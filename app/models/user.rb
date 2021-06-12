@@ -2,7 +2,8 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :jwt_authenticatable, jwt_revocation_strategy: self
     belongs_to :team
     has_many :users_foods
     has_many :users_hobbies
@@ -12,5 +13,5 @@ class User < ApplicationRecord
     validates :last_name, presence: true
     validates :username, presence: true, uniqueness: true
     validates :email, presence: true, uniqueness: true
-    validates :password, presence: true   # We might remove this, if we use has_secure_password for bcrypt
+    # validates :password, presence: true   # We might remove this, if we use has_secure_password for bcrypt
 end
