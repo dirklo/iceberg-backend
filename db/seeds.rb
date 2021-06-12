@@ -1,15 +1,15 @@
 company = Company.create(name: "First Company")
 team1 = company.teams.create(name: "Human Resources")
-team2 = company.teams.create(name: "Sofware ")
+team2 = company.teams.create(name: "Software")
 team3 = company.teams.create(name: "Sales")
 team4 = company.teams.create(name: "Customer Service")
 team5 = company.teams.create(name: "Marketing")
 
-team1.users.create(  # ADMIN USER =>> username: admin & password: admin
+team1.users.create(  # ADMIN USER =>> username: admin & password: admin123
     first_name: "Kayser",
     last_name: "Soze",
     username: "admin",
-    password: "admin",
+    password: "admin123", #password must be at least 6 characters
     email: "admin@admin.com",
     job_title: "HR Manager",
     pronoun: "he/him",
