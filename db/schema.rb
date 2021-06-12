@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_12_015048) do
+ActiveRecord::Schema.define(version: 2021_06_12_153239) do
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 2021_06_12_015048) do
     t.string "pronoun"
     t.boolean "admin"
     t.integer "team_id"
-    t.string "password"
+    t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["team_id"], name: "index_users_on_team_id"

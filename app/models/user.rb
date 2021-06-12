@@ -8,5 +8,5 @@ class User < ApplicationRecord
     validates :last_name, presence: true
     validates :username, presence: true, uniqueness: true
     validates :email, presence: true, uniqueness: true
-    validates :password, presence: true   # We might remove this, if we use has_secure_password for bcrypt
+    has_secure_password
 end
