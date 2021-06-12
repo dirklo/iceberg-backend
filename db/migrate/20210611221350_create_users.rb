@@ -10,6 +10,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.string :pronoun
       t.boolean :admin
       t.belongs_to :team
+      t.string :password
       
       t.timestamps
     end
