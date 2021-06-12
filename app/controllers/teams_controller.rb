@@ -5,7 +5,12 @@ class TeamsController < ApplicationController
     end 
 
     def show 
-        #maybe see all users in a team 
+        if current_user
+            @current_users_team = Team.find_by_id(current_user.team_id)
+            render json: { status:201, team: @current_users_team}
+        else 
+            render json: { status: 500, error: "*No Team to display currently."}
+        end
     end
 
     def index 
