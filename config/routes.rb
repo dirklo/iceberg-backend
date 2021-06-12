@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
-}
+  } 
   resources :companies
   # resources :users
   resources :teams
