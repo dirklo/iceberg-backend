@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-    before_action :authenticate_user!
+    
 
     def create  
         #admin_user should be only one able to create team
@@ -11,6 +11,7 @@ class TeamsController < ApplicationController
     end
 
     def index 
+        binding.pry
         @teams = Team.all  
         render json: {status:201, teams: @teams}
     end 
