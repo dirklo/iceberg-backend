@@ -1,16 +1,13 @@
-class UsersController < ApplicationController
 
+class UsersController < ApplicationController
+   
     def index
         users = User.all
         render json: users
     end
 
     def show
-        user = User.find_by(id: params[:id])
-        if user === nil
-            # if username passed rather than user_id
-            user = User.find_by(username: params[:id])
-        end
+        user = user_by_id(params[:id])
         if user
             render json: user
         else
@@ -18,7 +15,21 @@ class UsersController < ApplicationController
         end
     end
 
+    def update
+        # user = 
+    end
+
     def users_params
         params.require(:user).permit(:first_name, :last_name, :username, :email, :password, food_ids: [], hobby_ids: [], foods_attributes: [:name])
+    end
+
+    private
+
+    def user_by_id(id)
+        user = User.find_by(id: id)
+        if user.nil?
+            user = User.find_by(username: id)
+        end
+        return user
     end
 end
