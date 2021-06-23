@@ -37,7 +37,10 @@ populateUsers(Team.all)
 
 foods = []
 25.times do
-    foods.push(Food.create(name: Faker::Food.dish)) # Some food instances might have same name.
+    food = Faker::Food.dish
+    if Food.where(name: food).count == 0
+        foods.push(Food.create(name: food)) # Some food instances might have same name.
+    end
 end
 
 hobbyNames = ["Reading", "Drawing", "Listening Music", "Running", "Hiking", "Swimming", "Writing", "Soccer", "Basketball", "Traveling", "Cooking", "Fitness"]
