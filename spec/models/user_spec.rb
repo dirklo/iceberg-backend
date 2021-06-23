@@ -15,9 +15,9 @@ RSpec.describe User, type: :model do
     end
   end  
 
-  describe 'validations' do
+  context 'validations' do
     it {should validate_presence_of(:username)}
-    it {should validate_uniqueness_of(:username)}
+    it {should validate_uniqueness_of(:username).ignoring_case_sensitivity}
 
     it {should validate_presence_of(:first_name) }
 
