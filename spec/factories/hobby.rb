@@ -1,6 +1,7 @@
 FactoryBot.define do
-  factory :name do
-    hobbyNames = ["Reading", "Drawing", "Listening Music", "Running", "Hiking", "Swimming", "Writing", "Soccer", "Basketball", "Traveling", "Cooking", "Fitness"]
-    name = foods.sample(1)
+  factory :hobby do
+    hobbyNames = ["Hobby1", "Hobby2", "Hobby3", "Hobby4"]
+    hobbyname = hobbyNames.sample(1)
+    name {hobbyname}
   end
 end

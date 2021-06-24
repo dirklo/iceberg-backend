@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :name do
+  factory :food do
     food {Faker::Food.dish}
   end
 end

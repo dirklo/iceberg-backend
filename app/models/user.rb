@@ -6,7 +6,7 @@ class User < ApplicationRecord
          :jwt_authenticatable, jwt_revocation_strategy: self
   include Devise::JWT::RevocationStrategies::JTIMatcher
   belongs_to :team
-  has_many :users_foods, dependent: :delete_all
+  has_many :users_foods, dependent: :delete_all 
   has_many :users_hobbies
   has_many :foods, through: :users_foods
   has_many :hobbies, through: :users_hobbies
