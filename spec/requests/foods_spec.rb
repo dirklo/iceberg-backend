@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Foods", type: :request do
   # initialize test data
-  let!(:foods) { create_list(:food, 5) }
+  let!(:foods) { create_list(:food, 2) }
   let!(:food_id) { foods.first.id }
   
   #Test suite for GET /foods
@@ -11,7 +11,7 @@ RSpec.describe "Foods", type: :request do
     before { get '/foods' }
     it 'returns foods' do
       expect(json).not_to be_empty
-      expect(json.size).to eq(5)
+      expect(json.size).to eq(2)
     end
     it 'returns status code 200' do
       expect(response).to have_http_status(200)
@@ -34,4 +34,28 @@ RSpec.describe "Foods", type: :request do
       end
     end
   end
+
+  describe 'GET /foods/:food_id' do
+    before { get "/foods/#{food_id}"}
+    context 'when request is valid' do
+      it 'returns food' do
+        expect(json["id"]).to eq(food_id)
+      end
+      it 'returns status code 200' do
+        expect(response).to have_http_status(200)
+      end
+    end
+  end
+  describe 'GET /foods/:food_id' do
+    before { get "/foods/#{-1}"}
+    context 'when request is invalid' do
+      it 'returns failure message' do
+        expect(json).to include("message" => "Food is not found")
+      end
+      it 'returns status code 422' do
+        expect(response).to have_http_status(422)
+      end
+    end
+  end
+
 end
