@@ -11,7 +11,7 @@ RSpec.describe Users, type: :request do
     before {get '/users'}
     it 'returns users' do
       expect(json).not_to be_empty
-      expect(json.size).to (eq 2)
+      expect(json.size).to eq(2)
     end
     it 'returns status code 200' do
       expect(response).to have_http_status(200)
