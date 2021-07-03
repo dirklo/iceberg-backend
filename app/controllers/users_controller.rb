@@ -23,6 +23,14 @@ class UsersController < ApplicationController
         params.require(:user).permit(:first_name, :last_name, :username, :email, :password, food_ids: [], hobby_ids: [], foods_attributes: [:name])
     end
 
+    def userfoods
+        render json: "userfoods"
+    end
+
+    def userfood
+        render json: "userfood"
+    end
+
     private
 
     def user_by_id(id)

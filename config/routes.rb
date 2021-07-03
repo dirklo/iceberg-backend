@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   } 
   resources :companies
   resources :users, only: [:index, :show] do
-    resources :foods
-    resources :hobbies
+    resources :usersfood, only: [:index, :show, :destroy]
+    resources :usershobby, only: [:index, :show, :destroy]
   end
   resources :teams
   resources :hobbies
