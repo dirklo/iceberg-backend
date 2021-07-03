@@ -1,7 +1,5 @@
 FactoryBot.define do
   factory :hobby do
-    hobbyNames = ["Hobby1", "Hobby2", "Hobby3", "Hobby4"]
-    hobbyname = hobbyNames.sample(1)
-    name {hobbyname}
+    name {Faker::String.random(length: 4)}
   end
 end

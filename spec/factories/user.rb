@@ -1,16 +1,11 @@
 FactoryBot.define do
   factory :user do
-    hobbies =  FactoryBot.create_list(:hobby,2)
-    firstname =  Faker::Name.first_name
-    user { User.create(
-      first_name: firstname,
-      last_name: Faker::Name.last_name,
-      username: firstname + "#{Faker::Number.number(digits: 2)}",
-      password: Faker::Internet.password,
-      email: Faker::Internet.email,
-      team: Team.create(name: "Test"),
-      hobbies: hobbies,
-      foods: foods
-      )}
+    first_name {Faker::Name.first_name}
+    last_name {Faker::Name.last_name}
+    username {first_name + "#{Faker::Number.number(digits: 2)}"}
+    password {Faker::Internet.password}
+    email {Faker::Internet.email}
+    team_id { create(:team).id }
+    foods { create_list(:food, 2) }
   end
 end

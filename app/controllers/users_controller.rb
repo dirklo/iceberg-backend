@@ -3,15 +3,15 @@ class UsersController < ApplicationController
    
     def index
         users = User.all
-        render json: users
+        render json: users, status: 200
     end
 
     def show
         user = user_by_id(params[:id])
         if user
-            render json: user
+            render json: user, status: 200
         else
-            render json: { status: 200, message: "User is not found" }
+            render json: {message: "User is not found" }, status: 422
         end
     end
 
@@ -21,6 +21,14 @@ class UsersController < ApplicationController
 
     def users_params
         params.require(:user).permit(:first_name, :last_name, :username, :email, :password, food_ids: [], hobby_ids: [], foods_attributes: [:name])
+    end
+
+    def userfoods
+        render json: "userfoods"
+    end
+
+    def userfood
+        render json: "userfood"
     end
 
     private
