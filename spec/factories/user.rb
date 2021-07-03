@@ -6,5 +6,6 @@ FactoryBot.define do
     password {Faker::Internet.password}
     email {Faker::Internet.email}
     team_id { create(:team).id }
+    foods { create_list(:food, 2) }
   end
 end
