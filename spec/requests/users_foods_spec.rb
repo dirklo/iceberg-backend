@@ -45,5 +45,28 @@ RSpec.describe "UsersFood", type: :request do
         expect(response).to have_http_status(422)
       end
     end
+  end 
+
+  #test suite for DELETE /usersfood
+  describe 'DELETE /usersfood' do
+    let!(:food) { create(:food) }
+    let!(:user) { create(:user) }
+    context 'when delete is successful' do
+      before { user.foods << food }
+      before { delete "/users/#{user.id}/usersfood/#{food.id}"}
+      it 'returns status code 204' do
+        expect(response).to have_http_status(204)
+      end
+    end
+    context 'when delete is unsuccessful' do
+      before { delete "/users/#{user.id}/usersfood/#{-1}"}
+      it 'returns status code 404' do
+        expect(response).to have_http_status(404)
+      end
+    end
+    
   end
+
 end
+
+ 
