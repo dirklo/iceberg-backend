@@ -28,7 +28,14 @@ class UsersfoodController < ApplicationController
   end
 
   def destroy
-
+    @user = User.find(params[:user_id])
+    @userfood = @user.foods.find_by(id: params[:id])    
+    if !@userfood.nil?
+      @userfood.destroy
+      render json: {message: "Delete successful"}, status: 204
+    else
+      render json: {message: "Delete unsuccessful"}, status: 404
+    end
   end
 
 end
