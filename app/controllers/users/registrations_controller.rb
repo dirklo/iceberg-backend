@@ -7,13 +7,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def configure_sign_up_params
+    byebug
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :username, :email, :password, :team_id])
+    
   end
 
   private
 
   def respond_with(resource, _opts = {})
-    if resource.persisted?
+  byebug
+  if resource.persisted?
       render json: {
         status: {code: 200, message: 'Signed up sucessfully.'},
         data: UserSerializer.new(resource).as_json
