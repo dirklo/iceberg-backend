@@ -4,12 +4,12 @@ class UsersfoodController < ApplicationController
     render json: user.foods, status: 200
   end
 
-  def create
+  def create    
     @user = User.find(params[:user_id])
     addedFoods = []
     createdFood = []
     #params has the ability to receive an array of foods to be added for this user
-    arr = params[:foods]
+    arr = params[:foods]    
     if !arr.nil?
       # process each item received
       arr.each do |food|
@@ -19,7 +19,7 @@ class UsersfoodController < ApplicationController
           @food = Food.create(name: food["name"])
           createdFood << @food
         end
-        # check if the food is already associated with the user, if not, associate it with the user, add it to addedFoods to send back to requestor so redux store can be updated
+        # check if the food is already associated with the user, if not, associate it with the user, add it to addedFoods to send back to requestor so redux store can be
         if @user.foods.exists?(name: @food.name) == false
           @user.foods << @food
           addedFoods << @food
@@ -35,7 +35,7 @@ class UsersfoodController < ApplicationController
     @user = User.find(params[:user_id])
     @userfood = @user.foods.find_by(id: params[:id])    
     if !@userfood.nil?
-      @userfood.destroy
+      @user.foods.delete(@userfood)
       render json: {message: "Delete successful"}, status: 204
     else
       render json: {message: "Delete unsuccessful"}, status: 404
