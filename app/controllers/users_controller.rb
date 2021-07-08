@@ -6,7 +6,7 @@ class UsersController < ApplicationController
         render json: users, status: 200
     end
 
-    def show
+    def show        
         user = user_by_id(params[:id])
         if user
             render json: user, status: 200
@@ -34,6 +34,8 @@ class UsersController < ApplicationController
     private
 
     def user_by_id(id)
+        # params :id will either be user.id or user.username
+        # attempt to find by id first, else by username
         user = User.find_by(id: id)
         if user.nil?
             user = User.find_by(username: id)
