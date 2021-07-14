@@ -29,13 +29,11 @@ class UsershobbyController < ApplicationController
 
   def destroy
     @user = User.find(params[:user_id])
-    @userhobby = @user.hobbies.find_by(id: params[:id])    
-    if !@userhobby.nil?
-      @userhobby.destroy
-      render json: {message: "Delete successful"}, status: 204
-    else
-      render json: {message: "Delete unsuccessful"}, status: 404
+    params[:id].split(",").each do |i|
+      @userhobby = @user.hobbies.find_by(id: i.to_i)
+      @user.hobbies.delete(@userhobby)
     end
+    render json: {message: "Delete successful"}, status: 204
   end
 
 end

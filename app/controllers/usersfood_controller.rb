@@ -33,13 +33,11 @@ class UsersfoodController < ApplicationController
 
   def destroy
     @user = User.find(params[:user_id])
-    @userfood = @user.foods.find_by(id: params[:id])    
-    if !@userfood.nil?
+    params[:id].split(",").each do |i|
+      @userfood = @user.foods.find_by(id: i.to_i)
       @user.foods.delete(@userfood)
-      render json: {message: "Delete successful"}, status: 204
-    else
-      render json: {message: "Delete unsuccessful"}, status: 404
     end
+    render json: {message: "Delete successful"}, status: 204
   end
 
 end
